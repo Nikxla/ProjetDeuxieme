@@ -28,7 +28,7 @@ function register($nom, $prenom, $email, $mdp)
 {
     try {
         $connexion = getConnexion();
-        $request = $connexion->prepare("INSERT INTO `client` (`nomClient`, `prenomClient`, `emailClient`, `mdpClient`) VALUES (:nom, :prenom, :email, :mdp)");
+        $request = $connexion->prepare("INSERT INTO `client` (`nomClient`, `prenomClient`, `emailClient`, `mdpClient`, `role`) VALUES (:nom, :prenom, :email, :mdp, 0)");
         $request->bindParam(':nom', $nom, PDO::PARAM_STR);
         $request->bindParam(':prenom', $prenom, PDO::PARAM_STR);
         $request->bindParam(':email', $email, PDO::PARAM_STR);
@@ -95,6 +95,19 @@ function getPrenomClient($id)
 {
     try {
         $request = getConnexion()->prepare("SELECT `prenomClient` FROM `client` WHERE idClient = :id");
+        $request->bindParam(':id', $id, PDO::PARAM_STR);
+        $request->execute();
+
+        return $request->fetch();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function getRole($id)
+{
+    try {
+        $request = getConnexion()->prepare("SELECT `isAdmin` FROM `client` WHERE idClient = :id");
         $request->bindParam(':id', $id, PDO::PARAM_STR);
         $request->execute();
 

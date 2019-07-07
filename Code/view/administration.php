@@ -2,13 +2,16 @@
 require_once('../php/function.inc.php');
 require_once('../php/htmlToPhp.php');
 
-//var_dump($_SESSION);
+if($_SESSION['role'][0] !=  1){
+    header("location: index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Catalogue</title>
+    <title>Administration</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -25,32 +28,22 @@ require_once('../php/htmlToPhp.php');
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="./index.php">Catalogue <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.php">Catalogue</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./about.php">A propos</a>
                 </li>
-                <?php
-                menu();
-                ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./administration.php">Administration <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logout.php">Déconnexion</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-
-<div style="background-color: white; height: 100px; width: auto; text-align: center; margin-top: 100px;"><h1>contenu en cours de préparation</h1></div>
-
-<hr>
-
-<div class="col-sm-12 pb-5 footer" style="background-color: white">
-    <div class="row ml-auto mr-auto justify-content-center">
-        <a href="https://www.instagram.com/nikxla_/" target="_blank"><div class="explain-icon3 mr-3" style="background-image: url('../img/instagram.svg')"></div></a>
-        <a href="https://twitter.com/Nikxla_" target="_blank"><div class="explain-icon3 mr-3" style="background-image: url('../img/twitter.svg')"></div></a>
-        <a href="https://www.facebook.com/nikola.antonijevic.9022?ref=bookmarks" target="_blank"><div class="explain-icon3 mr-3" style="background-image: url('../img/facebook.svg')"></div></a>
-        <a href="https://www.youtube.com/channel/UCmEu6EPOxqwciFihpdBxdvw?view_as=subscriber" target="_blank"><div class="explain-icon3" style="background-image: url('../img/youtube.svg')"></div></a>
-    </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

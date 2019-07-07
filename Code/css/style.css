@@ -16,3 +16,62 @@ body {
     margin-top: 30px;
     text-align: center;
 }
+
+.explain-icon{
+    height: 190px;
+    width: 190px;
+    border: 8px dashed;
+    border-radius: 50%;
+    margin: auto;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+}
+
+.explain-icon2{
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    margin: auto;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+    background-color: white;
+}
+
+.explain-icon3{
+    height: 30px;
+    width: 30px;
+    /* border-radius: 50%; */
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    margin-top: 10px;
+}
+
+.person{
+    background-image: url("../img/303792.svg?auto=compress,format");
+}
+
+.pstyle{
+    font-size: 13pt;
+}
+
+.titre{
+    font-size: 30pt;
+    font-weight: bold;
+}
+
+h4{
+    font-size: 16pt;
+}
+
+.footer{
+    height: 50px;
+    width: auto;
+}
+
+.bg-primary{
+    background-color: #00beff !important;
+}
+
