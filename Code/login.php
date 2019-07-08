@@ -1,6 +1,6 @@
 <?php
 
-require_once('../php/function.inc.php');
+require_once('./php/function.inc.php');
 
 if (isset($_SESSION['logged']) == true) {
     header("location: index.php");
@@ -38,8 +38,8 @@ if (isset($_POST['submit'])) {
 <html lang="fr">
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
@@ -60,10 +60,10 @@ if (isset($_POST['submit'])) {
                     <a class="nav-link" href="./about.php">A propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./register.php">Inscription</a>
+                    <a class="nav-link" href="register.php">Inscription</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="./login.php">Connexion</a>
+                    <a class="nav-link" href="login.php">Connexion</a>
                 </li>
             </ul>
         </div>
@@ -110,7 +110,7 @@ if (isset($_POST['submit'])) {
                 <input type="password" class="form-control" placeholder="Mot de passe" name="password"/>
                 <br/>
                 <button type="submit" class="btn btn-primary" name="submit" style="float: right; background-color: #00bbe3;"">Connexion</button>
-                <p class="font-weight-bold">Vous n'avez pas encore de compte ? <a href="./register.php"> Inscrivez-vous
+                <p class="font-weight-bold">Vous n'avez pas encore de compte ? <a href="register.php"> Inscrivez-vous
                         ici</a></p>
             </form>
         </article>

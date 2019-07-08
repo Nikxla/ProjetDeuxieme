@@ -1,8 +1,8 @@
 <?php
-require_once('../php/function.inc.php');
-require_once('../php/htmlToPhp.php');
+require_once('./php/function.inc.php');
+require_once('./php/htmlToPhp.php');
 
-if($_SESSION['role'][0] !=  1){
+if ($_SESSION['role'][0] != 1) {
     header("location: index.php");
 }
 
@@ -12,8 +12,8 @@ if($_SESSION['role'][0] !=  1){
 <html>
 <head>
     <title>Administration</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
@@ -22,23 +22,24 @@ if($_SESSION['role'][0] !=  1){
 
     <div class="menuRight">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #00bbe3;">
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                style="background-color: #00bbe3;">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./index.php">Catalogue</a>
+                    <a class="nav-link" href="index.php">Catalogue</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./about.php">A propos</a>
+                    <a class="nav-link" href=".about.php">A propos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="./administration.php">Administration <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="administration.php">Administration <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./logout.php">Déconnexion</a>
+                    <a class="nav-link" href="logout.php">Déconnexion</a>
                 </li>
             </ul>
         </div>

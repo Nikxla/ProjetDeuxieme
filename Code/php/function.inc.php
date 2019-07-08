@@ -117,4 +117,26 @@ function getRole($id)
     }
 }
 
+function getTopMarque(){
+    try {
+        $request = getConnexion()->prepare("SELECT SUBSTRING_INDEX(nomArticle, ' ', 1) from article GROUP BY SUBSTRING_INDEX(nomArticle, ' ', 1) ORDER BY COUNT(idArticle) DESC LIMIT 4");
+        $request->execute();
+
+        return $request->fetchAll();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function getSneakersParMarque($marque){
+    try {
+        $request = getConnexion()->prepare("SELECT nomArticle, nomImage, prixArticle FROM `article` JOIN image on IMAGE.idArticle = article.idArticle WHERE SUBSTRING_INDEX(nomArticle, ' ', 1) = :marque");
+        $request->bindParam(':marque', $marque, PDO::PARAM_STR);
+        $request->execute();
+
+        return $request->fetchAll();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
 ?>

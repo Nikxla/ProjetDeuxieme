@@ -2,13 +2,14 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.maxSize{
+
+.maxSize {
     width: 50%;
     margin: auto;
     text-align: center;
 }
 
-.error{
+.error {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +18,7 @@ body {
     text-align: center;
 }
 
-.explain-icon{
+.explain-icon {
     height: 190px;
     width: 190px;
     border: 8px dashed;
@@ -28,7 +29,7 @@ body {
     background-size: 100px 100px;
 }
 
-.explain-icon2{
+.explain-icon2 {
     height: 130px;
     width: 130px;
     border-radius: 50%;
@@ -39,7 +40,7 @@ body {
     background-color: white;
 }
 
-.explain-icon3{
+.explain-icon3 {
     height: 30px;
     width: 30px;
     /* border-radius: 50%; */
@@ -49,29 +50,56 @@ body {
     margin-top: 10px;
 }
 
-.person{
-    background-image: url("../img/303792.svg?auto=compress,format");
+.explain-icon4 {
+    height: 150px;
+    width: 150px;
+    /* border-radius: 50%; */
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+    margin-top: 10px;
 }
 
-.pstyle{
+.explain-icon5 {
+    height: 200px;
+    width: 200px;
+    /* border-radius: 50%; */
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 200px 200px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.person {
+    background-image: url("../img/About/303792.svg?auto=compress,format");
+}
+
+.pstyle {
     font-size: 13pt;
 }
 
-.titre{
+.titre {
     font-size: 30pt;
     font-weight: bold;
 }
 
-h4{
+h4 {
     font-size: 16pt;
 }
 
-.footer{
+.footer {
     height: 50px;
     width: auto;
 }
 
-.bg-primary{
+.bg-primary {
     background-color: #00beff !important;
 }
 
+
+.linkHover:hover {
+    color: #000000;
+    opacity: 0.5;
+}
