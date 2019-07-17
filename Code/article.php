@@ -2,23 +2,30 @@
 require_once('./php/function.inc.php');
 require_once('./php/htmlToPhp.php');
 
-if(isset($_GET['mar'])){
-    $marque = $_GET['mar'];
+if(isset($_GET['art'])){
+    $artId = $_GET['art'];
 } else {
     header('location: index.php');
 }
 
-$sneakers = getSneakersParMarque($marque);
+$artInfo = getSneakersInfo($artId);
 
-if(count($sneakers) == 0){
+if($artInfo == false){
     header('location: index.php');
 }
+
+if(count($artInfo) == 0){
+    header('location: index.php');
+} else {
+    $taille = getTailleSneakers($artId);
+}
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= $marque ?></title>
+    <title><?= $artInfo[0] ?></title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -50,25 +57,30 @@ if(count($sneakers) == 0){
 </nav>
 
 <div class="container">
-    <div class="col-lg-12 text-center mt-5">
+    <div class="col-lg-10 text-center m-auto pb-3">
+        <h3 class="pt-4" style="color: #00bbe3"><?= $artInfo[0] ?></h3>
+        <div class="imageAarticle" style="background-image: url('./uploads/<?= $artInfo[2] ?>')"></div>
         <div class="row">
-            <?php for ($cpt = 0; $cpt < count($sneakers); $cpt++) {
-                ?>
-                <div class="col-lg-4 pb-4 pt-4 table">
-                    <a href="article.php?art=<?= $sneakers[$cpt][0] ?>">
-                        <h5><?= $sneakers[$cpt][1] ?></h5>
-                        <div class="col-sm-12 explain-icon5"
-                             style="background-image: url('uploads/<?= $sneakers[$cpt][2] ?>') "></div>
-                        <h5>Prix : <?= $sneakers[$cpt][3] ?> CHF</h5>
-                    </a>
-                </div>
-                <?php
-            } ?>
+            <div class="col-lg-4 col-sm-12 mt-3">
+                <h5 style="color: #00bbe3">Prix : <?= $artInfo[1] ?> CHF</h5>
+            </div>
+            <div class="col-lg-4 col-sm-12 pt-1">
+                <select class="form-control" id="selectTaille">
+                    <option value="" selected disabled hidden>Choisir une taille</option>
+                    <?php for($cpt = 0; $cpt < count($taille); $cpt++){ ?>
+                        <option value="<?= $taille[$cpt][0] ?>"><?= $taille[$cpt][0] ?></option>
+                    <?php
+                    } ?>
+                </select>
+            </div>
+            <div class="col-lg-4 col-sm-12 pt-1">
+                <button type="submit" class="btn btn-primary" name="submit" style="background-color: #00bbe3;"">Ajouter au panier</button>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="col-sm-12 pb-5 footer pt-3" style="background-color: #00bbe3">
+<div class="col-sm-12 pb-5 footer" style="background-color: #00bbe3">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/nikxla_/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>

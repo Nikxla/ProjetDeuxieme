@@ -79,16 +79,16 @@ if (isset($_POST['submit'])) {
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./index.php">Catalogue <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="./index.php" style="font-size: 15px;">Catalogue <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./about.php">A propos</a>
+                    <a class="nav-link" href="./about.php" style="font-size: 15px;">A propos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="register.php">Inscription</a>
+                    <a class="nav-link" href="register.php" style="font-size: 15px;">Inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./login.php">Connexion</a>
+                    <a class="nav-link" href="./login.php" style="font-size: 15px;">Connexion</a>
                 </li>
             </ul>
         </div>

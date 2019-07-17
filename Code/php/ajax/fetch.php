@@ -15,7 +15,7 @@ if(isset($_POST["query"]))
     } else {
         for($cpt = 0; $cpt < count($arr); $cpt++){
             if($cpt != count($arr) - 1){
-                $like .= ' nomArticle LIKE "%' . $arr[$cpt] . '%" OR';
+                $like .= ' nomArticle LIKE "%' . $arr[$cpt] . '%" AND';
             } else if ($cpt = count($arr) - 1){
                 $like .= ' nomArticle LIKE "%' . $arr[$cpt] . '%"';
             }
@@ -31,7 +31,6 @@ else
     $query = "SELECT * FROM article WHERE idArticle = 9999"; /* Requête qui ne retourne rien, exprès */
 }
 $result = mysqli_query($connect, $query);
-
 if(mysqli_num_rows($result) > 0)
 {
     $output .= '

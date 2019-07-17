@@ -2,7 +2,7 @@
 require_once('./php/function.inc.php');
 require_once('./php/htmlToPhp.php');
 
-$marques = getTopMarque()
+$marques = getTopMarque();
 
 ?>
 
@@ -28,10 +28,10 @@ $marques = getTopMarque()
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Catalogue <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php" style="font-size: 15px;">Catalogue <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./about.php">A propos</a>
+                    <a class="nav-link" href="./about.php" style="font-size: 15px;">A propos</a>
                 </li>
                 <?php
                 menu();
@@ -61,48 +61,55 @@ $marques = getTopMarque()
             <?php
 
             for ($cpt = 0; $cpt < count($marques); $cpt++) {
-                if (count($marques) == 1) {
-                    echo '<div class="col-lg-12 col-sm-12">
-                            <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
-                                <div class="p-3 explain-icon4" style="background-image: url(./img/Marques/' . $marques[$cpt][0] . '); margin: auto;"; >
-                                </div>      
-                            </a>
-                         </div>
-                      ';
-                } else if (count($marques) == 2) {
-                    echo '<div class="col-lg-6 col-sm-12">
-                            <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
-                                <div class="p-3 explain-icon4" style="background-image: url(./img/Marques/' . $marques[$cpt][0] . '); margin: auto;"; >
-                                </div>      
-                            </a>
-                         </div>
-                      ';
-                } else if (count($marques) == 3) {
-                    echo '<div class="col-lg-4 col-sm-12">
-                            <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
-                                <div class="p-3 explain-icon4" style="background-image: url(./img/Marques/' . $marques[$cpt][0] . '); margin: auto;"; >
-                                </div>      
-                            </a>
-                         </div>
-                      ';
-                } else {
-                    echo '<div class="col-lg-3 col-sm-12">
-                            <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
-                                <div class="p-3 explain-icon4" style="background-image: url(./img/Marques/' . $marques[$cpt][0] . '); margin: auto;"; >
-                                </div>      
-                            </a>
-                         </div>
-                      ';
+                if (count($marques) == 1) { ?>
+                    <div class="col-lg-12 col-sm-12">
+                        <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
+                            <div class="p-3 explain-icon4"
+                                 style="background-image: url('./img/Marques/<?php $marques[$cpt][0] ?>.svg'); margin: auto;"
+                                 ;>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+                } else if (count($marques) == 2) { ?>
+                    <div class="col-lg-6 col-sm-12">
+                        <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
+                            <div class="p-3 explain-icon4"
+                                 style="background-image: url('./img/Marques/<?php  $marques[$cpt][0] ?>.svg'); margin: auto;"
+                                 ;>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+                } else if (count($marques) == 3) { ?>
+                    <div class="col-lg-4 col-sm-12">
+                        <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
+                            <div class="p-3 explain-icon4"
+                                 style="background-image: url('./img/Marques/<?php $marques[$cpt][0] ?>.svg'); margin: auto;"
+                                 ;>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+                } else { ?>
+                    <div class="col-lg-3 col-sm-12">
+                        <a href="./marque.php?mar=<?= $marques[$cpt][0] ?>" style="color: white;" class="linkHover">
+                            <div class="p-3 explain-icon4"
+                                 style="background-image: url('./img/Marques/<?= $marques[$cpt][0] ?>.svg'); margin: auto;"
+                                 ;>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
                 }
             }
-
             ?>
         </div>
     </div>
 
 </div>
 
-<div class="col-sm-12 pb-5 footer pt-3" style="background-color: white">
+<div class="col-sm-12 pt-3 footer" style="background-color: #ffffff">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/nikxla_/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>

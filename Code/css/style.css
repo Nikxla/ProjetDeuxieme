@@ -61,12 +61,24 @@ body {
 }
 
 .explain-icon5 {
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     /* border-radius: 50%; */
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: 200px 200px;
+    background-size: 250px 200px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageAarticle{
+    height: 500px;
+    width: 700px;
+    /* border-radius: 50%; */
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 700px 500px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -102,4 +114,8 @@ h4 {
 .linkHover:hover {
     color: #000000;
     opacity: 0.5;
+}
+
+.menuFont{
+    font-size: 30pt !important;
 }

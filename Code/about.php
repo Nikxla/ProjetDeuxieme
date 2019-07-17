@@ -26,10 +26,10 @@ require_once('./php/htmlToPhp.php');
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Catalogue <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php" style="font-size: 15px;">Catalogue <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="about.php">A propos</a>
+                    <a class="nav-link" href="about.php" style="font-size: 15px;">A propos</a>
                 </li>
                 <?php
                 menu();
@@ -111,8 +111,8 @@ require_once('./php/htmlToPhp.php');
 </div>
 
 
-<div class="col-sm-12 footer pt-3 pb-3" style="background-color: white">
-    <div class="row ml-auto mr-auto justify-content-center pb-3">
+<div class="col-sm-12 footer" style="background-color: #ffffff">
+    <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/nikxla_/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>
         </a>
