@@ -113,16 +113,16 @@ require_once('./php/htmlToPhp.php');
 
 <div class="col-sm-12 footer" style="background-color: #ffffff">
     <div class="row ml-auto mr-auto justify-content-center">
-        <a href="https://www.instagram.com/nikxla_/" target="_blank">
+        <a href="https://www.instagram.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>
         </a>
-        <a href="https://twitter.com/Nikxla_" target="_blank">
+        <a href="https://twitter.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/twitter.svg')"></div>
         </a>
-        <a href="https://www.facebook.com/nikola.antonijevic.9022?ref=bookmarks" target="_blank">
+        <a href="https://www.facebook.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/facebook.svg')"></div>
         </a>
-        <a href="https://www.youtube.com/channel/UCmEu6EPOxqwciFihpdBxdvw?view_as=subscriber" target="_blank">
+        <a href="https://www.youtube.com/" target="_blank">
             <div class="explain-icon3" style="background-image: url('img/Social/youtube.svg')"></div>
         </a>
     </div>

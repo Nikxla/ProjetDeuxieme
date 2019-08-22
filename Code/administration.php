@@ -76,6 +76,9 @@ if (isset($_POST['submit'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="about.php" style="font-size: 15px;">A propos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="font-size: 15px;" href="./panier.php">Panier</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="administration.php" style="font-size: 15px;">Administration <span
                                 class="sr-only">(current)</span></a>

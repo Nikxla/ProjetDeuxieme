@@ -109,22 +109,23 @@ $marques = getTopMarque();
 
 </div>
 
-<div class="col-sm-12 pt-3 footer" style="background-color: #ffffff">
+<div class="col-sm-12 footer" style="background-color: #ffffff">
     <div class="row ml-auto mr-auto justify-content-center">
-        <a href="https://www.instagram.com/nikxla_/" target="_blank">
+        <a href="https://www.instagram.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>
         </a>
-        <a href="https://twitter.com/Nikxla_" target="_blank">
+        <a href="https://twitter.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/twitter.svg')"></div>
         </a>
-        <a href="https://www.facebook.com/nikola.antonijevic.9022?ref=bookmarks" target="_blank">
+        <a href="https://www.facebook.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/facebook.svg')"></div>
         </a>
-        <a href="https://www.youtube.com/channel/UCmEu6EPOxqwciFihpdBxdvw?view_as=subscriber" target="_blank">
+        <a href="https://www.youtube.com/" target="_blank">
             <div class="explain-icon3" style="background-image: url('img/Social/youtube.svg')"></div>
         </a>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

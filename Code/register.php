@@ -95,9 +95,9 @@ if (isset($_POST['submit'])) {
     </div>
 </nav>
 
-<div class="container pt-5" id="container">
-    <section>
-        <article>
+        <div class="container pt-5" id="container">
+            <section>
+                <article>
             <?php
             if (count($error) > 0) {
                 echo '<div class="alert table-danger error">';

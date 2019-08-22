@@ -154,7 +154,7 @@ function getSneakersInfo($id){
 
 function getTailleSneakers($id){
     try {
-        $request = getConnexion()->prepare("SELECT taille.nomTaille FROM `taille` JOIN stock ON stock.idTaille = taille.idTaille JOIN article ON article.idArticle = stock.idArticle WHERE article.idArticle = :id");
+        $request = getConnexion()->prepare("SELECT taille.idTaille, taille.nomTaille FROM `taille` JOIN stock ON stock.idTaille = taille.idTaille JOIN article ON article.idArticle = stock.idArticle WHERE article.idArticle = :id ORDER BY taille.nomTaille ASC");
         $request->bindParam(':id', $id, PDO::PARAM_INT);
         $request->execute();
 
@@ -226,4 +226,87 @@ function insertStock($idArticle, $idTaille){
         throw $e;
     }
 }
-?>
+
+function countNbPanier($idClient){
+    try {
+        $request = getConnexion()->prepare("SELECT COUNT(`idPanier`) FROM `panier` WHERE idClient = :idClient AND idPanier NOT IN (select idPanier FROM `commande`)");
+        $request->bindParam(':idClient', $idClient, PDO::PARAM_INT);
+        $request->execute();
+
+        return $request->fetchAll();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function createNewPanier($idClient){
+    $var = countNbPanier($idClient);
+    $idPanier = -1;
+    $connexion = getConnexion();
+
+    if($var[0][0] == 0){
+        try {
+            $request = $connexion->prepare("INSERT INTO `panier` (`idReduction`, `idClient`) VALUES (NULL, :idClient)");
+            $request->bindParam(':idClient', $idClient, PDO::PARAM_INT);
+            $request->execute();
+
+            $idPanier = $connexion->lastInsertId();
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    } else {
+        try {
+            $request = $connexion->prepare("SELECT idPanier FROM `panier` WHERE idClient = :idClient AND idPanier NOT IN (select idPanier FROM `commande`)");
+            $request->bindParam(':idClient', $idClient, PDO::PARAM_INT);
+            $request->execute();
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+
+        if($idPanier != -1){
+            return $idPanier;
+        } else {
+            return $request->fetchAll();
+        }
+    }
+}
+
+function insertArticlePanier($idPanier, $idArticle, $idTaille, $date){
+    try {
+        $connexion = getConnexion();
+        $request = $connexion->prepare("INSERT INTO `article_panier` (`idPanier`, `idArticle`, `idTaille`, `dateAjout`) VALUES (:idPanier, :idArticle, :idTaille, :laDate)");
+        $request->bindParam(':idPanier', $idPanier, PDO::PARAM_INT);
+        $request->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+        $request->bindParam(':idTaille', $idTaille, PDO::PARAM_INT);
+        $request->bindParam(':laDate', $date, PDO::PARAM_STR);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function getPanier($idUser){
+    try {
+        $request = getConnexion()->prepare("SELECT `article`.idArticle, `article`.nomArticle, `taille`.`nomTaille` ,`article`.prixArticle, `panier`.idPanier FROM `article` JOIN `article_panier` ON `article_panier`.idArticle = `article`.idArticle JOIN `taille` ON `taille`.`idTaille` = `article_panier`.`idTaille` JOIN `panier` ON `panier`.`idPanier` = `article_panier`.`idPanier` WHERE `panier`.`idClient` = :idUser AND `panier`.`idPanier` NOT IN (SELECT `commande`.`idPanier` FROM `commande`)");
+        $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $request->execute();
+
+        return $request->fetchAll();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function validerPanier($idPanier, $dateCommande){
+    try {
+        $connexion = getConnexion();
+        $request = $connexion->prepare("INSERT INTO `commande` (`idPanier`, `dateCommande`) VALUES (:idPanier, :dateCommande)");
+        $request->bindParam(':idPanier', $idPanier, PDO::PARAM_INT);
+        $request->bindParam(':dateCommande', $dateCommande, PDO::PARAM_STR);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
