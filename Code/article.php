@@ -2,6 +2,8 @@
 require_once('./php/function.inc.php');
 require_once('./php/htmlToPhp.php');
 
+$message = array();
+
 if (isset($_GET['art'])) {
     $artId = $_GET['art'];
     $_SESSION['addToPanier'] = "None";
@@ -29,6 +31,23 @@ if(isset($_POST['submit'])){
     $date = date("Y-m-d");
     insertArticlePanier($varPanier[0][0], $artId, $_POST['tailleChoisi'], $date);
     $_SESSION['addToPanier'] = "Ok";
+}
+
+if(isset($_GET['delete'])){
+    if($_GET['delete'] == "ok"){
+        if(isset($_GET['art'])){
+            if($_GET['art'] != 0){
+                $idArticle = $_GET['art'];
+                deleteArticle($idArticle);
+
+                if(isset($artInfo[2])){
+                    unlink("./uploads/" . $artInfo[2]);
+                }
+
+                array_push($message, "L'article à bien été supprimé.");
+            }
+        }
+    }
 }
 ?>
 
@@ -68,8 +87,30 @@ if(isset($_POST['submit'])){
 
 <div class="container">
     <div class="col-lg-10 text-center m-auto pb-3">
+        <br/>
+        <a href="article.php?delete=ok&art=<?php echo $artId ?>">
+            <button type="button" class="btn btn-danger mr-2" name="redirect" style="width: 150px; height: auto;">
+                Supprimer l'article
+            </button>
+        </a>
+        <a href="updateArticle.php?art=<?php echo $artId ?>">
+            <button type="button" class="btn btn-warning ml-2" name="redirect" style="width: 150px; height: auto;">
+                Modifier l'article
+            </button>
+        </a>
         <h3 class="pt-4" style="color: #00bbe3"><?= $artInfo[0] ?></h3>
         <?php
+
+        if (count($message) > 0) {
+            echo '<div class="alert table-success" style="text-align: center;">';
+            for ($i = 0; $i < count($message); $i++) {
+                echo $message[$i];
+                echo '<br/>';
+            };
+            echo '</div>';
+            header("location: index.php");
+        }
+
         if ($_SESSION['addToPanier'] == "Ok") { ?>
             <div class="alert table-success error">';
                 <p>L'article a bien été ajouté au panier.</p>
@@ -126,19 +167,19 @@ if(isset($_POST['submit'])){
 </div>
 </div>
 
-<div class="col-sm-12 footer" style="background-color: #ffffff">
+<div class="col-sm-12 footer" style="background-color: #00bbe3">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>
+            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>
         </a>
         <a href="https://twitter.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/twitter.svg')"></div>
+            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/twitter.svg')"></div>
         </a>
         <a href="https://www.facebook.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/facebook.svg')"></div>
+            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/facebook.svg')"></div>
         </a>
         <a href="https://www.youtube.com/" target="_blank">
-            <div class="explain-icon3" style="background-image: url('img/Social/youtube.svg')"></div>
+            <div class="explain-icon3" style="background-image: url('img/Social/white/youtube.svg')"></div>
         </a>
     </div>
 </div>

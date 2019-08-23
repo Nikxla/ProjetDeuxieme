@@ -11,15 +11,16 @@ if (isset($_SESSION['idClient'])) {
     if (isset($_GET['validate']) == "Ok") {
         if (count($panier) > 0) {
             $date = date("Y-m-d");
-            validerPanier($panier[0][3], $date);
+            validerPanier($panier[0][4], $date);
 
             array_push($message, "La commande à bien été passée.");
 
             header("Refresh:3");
         }
     }
+} else {
+    header("location: index.php");
 }
-
 
 ?>
 
@@ -27,7 +28,7 @@ if (isset($_SESSION['idClient'])) {
 
 <html lang="fr">
 <head>
-    <title>A propos</title>
+    <title>Panier</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -55,12 +56,15 @@ if (isset($_SESSION['idClient'])) {
 
                 <?php
 
-                if ($_SESSION['role'][0] == 1) { ?>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="administration.php" style="font-size: 15px;">Administration </a>
-                    </li>
-
-                <?php } ?>
+                if (isset($_SESSION['role'][0])) {
+                    if ($_SESSION['role'][0] == 1) { ?>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="administration.php" style="font-size: 15px;">Administration </a>
+                        </li>
+                        <?php
+                    }
+                }
+                ?>
 
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php" style="font-size: 15px;">Déconnexion</a>
@@ -91,63 +95,67 @@ if (isset($_SESSION['idClient'])) {
 
                     <?php
 
-                    if(count($panier) > 0){
-                        ?>
-                        <table class="table table-striped" style="text-align: center;">
-                            <thead>
-                            <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Taille</th>
-                                <th scope="col">Prix</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
+                    if (isset($panier)) {
+                        if (count($panier) > 0) {
 
-                            $prixTotal = 0;
-
-                            for ($cpt = 0; $cpt < count($panier); $cpt++) {
-                                ?>
+                            ?>
+                            <table class="table table-striped" style="text-align: center;">
+                                <thead>
                                 <tr>
-                                    <th scope="row"><?= $panier[$cpt][0] ?></th>
-                                    <td><?= $panier[$cpt][1] ?></td>
-                                    <td><?= $panier[$cpt][2] ?></td>
-                                    <td><?= $panier[$cpt][3] ?> CHF</td>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Taille</th>
+                                    <th scope="col">Prix</th>
                                 </tr>
+                                </thead>
+                                <tbody>
                                 <?php
 
-                                $prixTotal = $prixTotal + $panier[$cpt][3];
+                                $prixTotal = 0;
+
+                                for ($cpt = 0; $cpt < count($panier); $cpt++) {
+                                    ?>
+                                    <tr>
+                                        <th scope="row"><?= $panier[$cpt][0] ?></th>
+                                        <td><a href="article.php?art=<?php echo $panier[$cpt][0] ?>" style="text-decoration: underline; color: #919aa1;"><?= $panier[$cpt][1] ?></a></td>
+                                        <td><?= $panier[$cpt][2] ?></td>
+                                        <td><?= $panier[$cpt][3] ?> CHF</td>
+                                    </tr>
+                                    <?php
+
+                                    $prixTotal = $prixTotal + $panier[$cpt][3];
+                                }
+
+                                ?>
+                                </tbody>
+                            </table>
+                            <hr/>
+                            <p style="font-size: 13pt; float: left;">Prix total : <label
+                                        class="font-weight-bold font-italic"><?= $prixTotal ?> CHF </label></p>
+
+                            <?php
+
+                            if (isset($panier)) {
+                                if (count($panier) > 0) {
+                                    ?>
+                                    <form action="panier.php?validate=Ok" method="post" enctype="multipart/form-data">
+                                        <button id="addArticle-submit" type="submit" class="btn btn-primary"
+                                                name="submit"
+                                                style="float: right; background-color: #00bbe3;">Passer la commande
+                                        </button>
+                                    </form>
+                                    <?php
+                                }
                             }
 
                             ?>
-                            </tbody>
-                        </table>
-                        <hr/>
-                        <p style="font-size: 13pt; float: left;">Prix total : <label
-                                    class="font-weight-bold font-italic"><?= $prixTotal ?> CHF </label></p>
-
-                        <?php
-
-                        if (isset($panier)) {
-                            if (count($panier) > 0) {
-                                ?>
-                                <form action="panier.php?validate=Ok" method="post" enctype="multipart/form-data">
-                                    <button id="addArticle-submit" type="submit" class="btn btn-primary" name="submit"
-                                            style="float: right; background-color: #00bbe3;">Passer la commande
-                                    </button>
-                                </form>
-                                <?php
-                            }
+                            <?php
+                        } else {
+                            echo '<div class="alert table-active" style="text-align: center;">';
+                            echo 'Votre panier est vide.';
+                            echo '<br/>';
+                            echo '</div>';
                         }
-
-                        ?>
-                        <?php
-                    } else {
-                        echo '<div class="alert table-active" style="text-align: center;">';
-                        echo 'Votre panier est vide.';
-                        echo '<br/>';
-                        echo '</div>';
                     }
 
                     ?>

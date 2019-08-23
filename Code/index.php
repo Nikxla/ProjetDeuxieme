@@ -3,7 +3,6 @@ require_once('./php/function.inc.php');
 require_once('./php/htmlToPhp.php');
 
 $marques = getTopMarque();
-
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +24,7 @@ $marques = getTopMarque();
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
+        <div class="collapse navbar-collapse" id="navbarColor01" style="text-align: center;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php" style="font-size: 15px;">Catalogue <span class="sr-only">(current)</span></a>

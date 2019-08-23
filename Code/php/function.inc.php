@@ -310,3 +310,50 @@ function validerPanier($idPanier, $dateCommande){
         throw $e;
     }
 }
+
+function deleteArticle($idArticle){
+    try {
+        $request = getConnexion()->prepare("DELETE FROM `article` WHERE idArticle = :id");
+        $request->bindParam(':id', $idArticle, PDO::PARAM_INT);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function updateSneakers($nomArticle, $prixArticle, $idCategorie, $idArticle)
+{
+    try {
+        $request = getConnexion()->prepare("UPDATE `article` SET `nomArticle` = :nomArticle, `prixArticle` = :prixArticle, `idCategorie` = :idCategorie WHERE idArticle = :id");
+        $request->bindParam(':nomArticle', $nomArticle, PDO::PARAM_STR);
+        $request->bindParam(':prixArticle',$prixArticle, PDO::PARAM_INT);
+        $request->bindParam(':idCategorie', $idCategorie, PDO::PARAM_INT);
+        $request->bindParam(':id', $idArticle, PDO::PARAM_INT);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function deleteStock($idArticle, $idTaille){
+    try {
+        $request = getConnexion()->prepare("DELETE FROM `stock` WHERE idArticle = :idArticle AND idTaille = :idTaille");
+        $request->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+        $request->bindParam(':idTaille', $idTaille, PDO::PARAM_INT);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function updateMedia($nomImage, $idArticle)
+{
+    try {
+        $request = getConnexion()->prepare("UPDATE `image` SET `nomImage` = :nomImage, `idArticle` = :idArticle WHERE idArticle = :idArticle");
+        $request->bindParam(':nomImage', $nomImage, PDO::PARAM_STR);
+        $request->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}

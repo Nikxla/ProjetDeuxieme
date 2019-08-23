@@ -3,7 +3,15 @@
 function menu()
 {
     if (isset($_SESSION['logged']) == true) {
-        if ($_SESSION['role'][0] == 1) { ?>
+        if($_SESSION['role'][0] == 0){ ?>
+            <li class="nav-item">
+                <a class="nav-link" style="font-size: 15px;" href="./panier.php">Panier</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="font-size: 15px;" href="./logout.php">Déconnexion</a>
+            </li>
+            <?php
+        } else if ($_SESSION['role'][0] == 1) { ?>
             <li class="nav-item">
                 <a class="nav-link" style="font-size: 15px;" href="./panier.php">Panier</a>
             </li>
@@ -14,14 +22,6 @@ function menu()
                 <a class="nav-link" style="font-size: 15px;" href="./logout.php">Déconnexion</a>
             </li>
             <?php
-        } else if($_SESSION['role'][0] == 0){ ?>
-                <li class="nav-item">
-                    <a class="nav-link" style="font-size: 15px;" href="./panier.php">Panier</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="font-size: 15px;" href="./logout.php">Déconnexion</a>
-                </li>
-                <?php
         }
     } else  {
         ?>

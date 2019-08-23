@@ -68,19 +68,19 @@ if(count($sneakers) == 0){
     </div>
 </div>
 
-<div class="col-sm-12 footer" style="background-color: #ffffff">
+<div class="col-sm-12 footer" style="background-color: #00bbe3">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>
+            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>
         </a>
         <a href="https://twitter.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/twitter.svg')"></div>
+            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/twitter.svg ')"></div>
         </a>
         <a href="https://www.facebook.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/facebook.svg')"></div>
+            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/facebook.svg')"></div>
         </a>
         <a href="https://www.youtube.com/" target="_blank">
-            <div class="explain-icon3" style="background-image: url('img/Social/youtube.svg')"></div>
+            <div class="explain-icon3" style="background-image: url('img/Social/white/youtube.svg')"></div>
         </a>
     </div>
 </div>
