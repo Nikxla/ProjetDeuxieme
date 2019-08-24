@@ -72,7 +72,8 @@ if (isset($_POST['submit'])) {
 
     <div class="menuRight">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #00bbe3;">
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                style="background-color: #00bbe3;">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -95,9 +96,9 @@ if (isset($_POST['submit'])) {
     </div>
 </nav>
 
-        <div class="container pt-5" id="container">
-            <section>
-                <article>
+<div class="container pt-5" id="container">
+    <section>
+        <article>
             <?php
             if (count($error) > 0) {
                 echo '<div class="alert table-danger error">';
@@ -113,16 +114,16 @@ if (isset($_POST['submit'])) {
                 </script>
             <?php
             } else if ($_SESSION['register'] == "Ok") {
-                echo '<div class="alert table-success error">';
-                echo "Votre inscription est terminée " . $prenom . " " . $nom . " !";
-                echo '</div>';
-                $_SESSION['email'] = $email;
-                $_SESSION['idClient'] = getIdClient($_SESSION['email']);
-                $_SESSION['logged'] = true;
-                $_SESSION['role'] = "visitor";
+            echo '<div class="alert table-success error">';
+            echo "Votre inscription est terminée " . $prenom . " " . $nom . " !";
+            echo '</div>';
+            $_SESSION['email'] = $email;
+            $_SESSION['idClient'] = getIdClient($_SESSION['email']);
+            $_SESSION['logged'] = true;
+            $_SESSION['role'] = "visitor";
 
-                header("refresh:2;url=./index.php");
-                ?>
+            header("refresh:2;url=./index.php");
+            ?>
                 <script>
                     var element = document.getElementById("container");
                     element.classList.remove("pt-5");
@@ -190,7 +191,9 @@ if (isset($_POST['submit'])) {
                 <input type="password" class="form-control" placeholder="Entre 8 et 16 caractères." name="password2"
                        id="register-password2"/>
                 <br/>
-                <button id="register-submit" type="submit" class="btn btn-primary" name="submit" style="float: right; background-color: #00bbe3;">Inscription</button>
+                <button id="register-submit" type="submit" class="btn btn-primary" name="submit"
+                        style="float: right; background-color: #00bbe3;">Inscription
+                </button>
             </form>
             <br/>
             <p class="font-weight-bold">Vous avez un déjà un compte ? <a href="login.php">Connectez-vous ici</a></p>

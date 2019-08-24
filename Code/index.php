@@ -74,7 +74,7 @@ $marques = getTopMarque();
                     <div class="col-lg-6 col-sm-12">
                         <a href="./marque.php?mar=' . $marques[$cpt][0] . '" style="color: white;" class="linkHover">
                             <div class="p-3 explain-icon4"
-                                 style="background-image: url('./img/Marques/<?php  $marques[$cpt][0] ?>.svg'); margin: auto;"
+                                 style="background-image: url('./img/Marques/<?php $marques[$cpt][0] ?>.svg'); margin: auto;"
                                  ;>
                             </div>
                         </a>
@@ -108,7 +108,7 @@ $marques = getTopMarque();
 
 </div>
 
-<div class="col-sm-12 footer" style="background-color: #ffffff">
+<div class="col-sm-12 footer fixed-bottom" style="background-color: #ffffff">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>
@@ -166,5 +166,4 @@ $marques = getTopMarque();
 </script>
 
 </body>
-
 </html>

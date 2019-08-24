@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
 
             if (!is_uploaded_file($_FILES['image']['tmp_name'])) {
                 updateMedia($nomMedia, $artId);
-                if(isset($imageArticle)){
+                if (isset($imageArticle)) {
                     unlink("./uploads/" . $imageArticle);
                 }
             }

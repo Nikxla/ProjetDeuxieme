@@ -206,7 +206,7 @@ if (isset($_SESSION['role'])) {
 </div>
 </div>
 
-<div class="col-sm-12 footer" style="background-color: #00bbe3">
+<div class="col-sm-12 footer " style="background-color: #00bbe3">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>

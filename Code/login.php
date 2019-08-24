@@ -47,7 +47,8 @@ if (isset($_POST['submit'])) {
 
     <div class="menuRight">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #00bbe3;">
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                style="background-color: #00bbe3;">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -86,14 +87,14 @@ if (isset($_POST['submit'])) {
                     var element = document.getElementById("container");
                     element.classList.remove("pt-5");
                 </script>
-                <?php
-                //Affichage du message de connexion
+            <?php
+            //Affichage du message de connexion
             } elseif (isset($_SESSION['logged']) == true) {
-                echo '<div class="alert alert-success error">';
-                echo "Bienvenue " .$_SESSION['prenomClient'][0] . " " . $_SESSION['nomClient'][0] . " !";
-                echo '</div>';
-                header("refresh:2;url=./index.php");
-                ?>
+            echo '<div class="alert alert-success error">';
+            echo "Bienvenue " . $_SESSION['prenomClient'][0] . " " . $_SESSION['nomClient'][0] . " !";
+            echo '</div>';
+            header("refresh:2;url=./index.php");
+            ?>
                 <script>
                     var element = document.getElementById("container");
                     element.classList.remove("pt-5");
@@ -109,7 +110,9 @@ if (isset($_POST['submit'])) {
                 <label><b>Mot de passe</b></label>
                 <input type="password" class="form-control" placeholder="Mot de passe" name="password"/>
                 <br/>
-                <button type="submit" class="btn btn-primary" name="submit" style="float: right; background-color: #00bbe3;"">Connexion</button>
+                <button type="submit" class="btn btn-primary" name="submit"
+                        style="float: right; background-color: #00bbe3;"
+                ">Connexion</button>
                 <p class="font-weight-bold">Vous n'avez pas encore de compte ? <a href="register.php"> Inscrivez-vous
                         ici</a></p>
             </form>

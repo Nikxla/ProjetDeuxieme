@@ -70,7 +70,7 @@ require_once('./php/htmlToPhp.php');
     </section>
 </div>
 
-<div class="col-sm-12 pb-5" style="background-color: #00bbe3">
+<div class="col-sm-12 pb-5" style="background-color: #00bbe3; padding-bottom: 100px !important;">
     <div class="container">
         <h1 class="p-5 font-weight-bold" style="color: white;">Acheter sur notre plateforme</h1>
 
@@ -111,7 +111,7 @@ require_once('./php/htmlToPhp.php');
 </div>
 
 
-<div class="col-sm-12 footer" style="background-color: #ffffff">
+<div class="col-sm-12 footer fixed-bottom" style="background-color: #ffffff">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/instagram.svg')"></div>

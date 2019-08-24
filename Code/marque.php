@@ -2,7 +2,7 @@
 require_once('./php/function.inc.php');
 require_once('./php/htmlToPhp.php');
 
-if(isset($_GET['mar'])){
+if (isset($_GET['mar'])) {
     $marque = $_GET['mar'];
 } else {
     header('location: index.php');
@@ -10,7 +10,7 @@ if(isset($_GET['mar'])){
 
 $sneakers = getSneakersParMarque($marque);
 
-if(count($sneakers) == 0){
+if (count($sneakers) == 0) {
     header('location: index.php');
 }
 ?>
@@ -49,11 +49,10 @@ if(count($sneakers) == 0){
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="padding-bottom: 50px;">
     <div class="col-lg-12 text-center mt-5">
         <div class="row">
-            <?php for ($cpt = 0; $cpt < count($sneakers); $cpt++) {
-                ?>
+            <?php for ($cpt = 0; $cpt < count($sneakers); $cpt++) { ?>
                 <div class="col-lg-4 pb-4 pt-4 table">
                     <a href="article.php?art=<?= $sneakers[$cpt][0] ?>">
                         <h5><?= $sneakers[$cpt][1] ?></h5>
@@ -68,7 +67,7 @@ if(count($sneakers) == 0){
     </div>
 </div>
 
-<div class="col-sm-12 footer" style="background-color: #00bbe3">
+<div class="col-sm-12 footer fixed-bottom" style="background-color: #00bbe3">
     <div class="row ml-auto mr-auto justify-content-center">
         <a href="https://www.instagram.com/" target="_blank">
             <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>

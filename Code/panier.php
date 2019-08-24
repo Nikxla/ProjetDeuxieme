@@ -19,8 +19,8 @@ if (isset($_SESSION['idClient'])) {
         }
     }
 
-    if(isset($_GET['remove'])){
-        if(isset($_GET['taille'])){
+    if (isset($_GET['remove'])) {
+        if (isset($_GET['taille'])) {
             $idArticleRemove = $_GET['remove'];
             $idTailleRemove = $_GET['taille'];
 
@@ -36,7 +36,6 @@ if (isset($_SESSION['idClient'])) {
 }
 
 
-
 ?>
 
 <!doctype html>
@@ -48,7 +47,7 @@ if (isset($_SESSION['idClient'])) {
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-            <script src="https://pay.sandbox.datatrans.com/upp/payment/js/datatrans-2.0.0.min.js"></script>
+    <script src="https://pay.sandbox.datatrans.com/upp/payment/js/datatrans-2.0.0.min.js"></script>
 
 </head>
 <body>
@@ -136,10 +135,14 @@ if (isset($_SESSION['idClient'])) {
                                     ?>
                                     <tr>
                                         <th scope="row"><?= $panier[$cpt][0] ?></th>
-                                        <td><a href="article.php?art=<?php echo $panier[$cpt][0] ?>" style="text-decoration: underline; color: #919aa1;"><?= $panier[$cpt][1] ?></a></td>
+                                        <td><a href="article.php?art=<?php echo $panier[$cpt][0] ?>"
+                                               style="text-decoration: underline; color: #919aa1;"><?= $panier[$cpt][1] ?></a>
+                                        </td>
                                         <td><?= $panier[$cpt][2] ?></td>
                                         <td><?= $panier[$cpt][3] ?> CHF</td>
-                                        <td><a href="panier.php?remove=<?php echo $panier[$cpt][0] ?>&taille=<?php echo $panier[$cpt][5] ?>" style="color: #919aa1;">X</a></td>
+                                        <td>
+                                            <a href="panier.php?remove=<?php echo $panier[$cpt][0] ?>&taille=<?php echo $panier[$cpt][5] ?>"
+                                               style="color: #919aa1;">X</a></td>
                                     </tr>
                                     <?php
 
@@ -160,15 +163,17 @@ if (isset($_SESSION['idClient'])) {
 
                                     $prixFinal = $prixTotal * 100;
                                     ?>
-
-                                    <form id="paymentForm" style="float: right; background-color: #00bbe3;"
-                                          data-merchant-id="1100018721"
-                                          data-amount="<?php echo $prixFinal ?>"
-                                          data-currency="CHF"
-                                          data-refno="123456789"
-                                          data-sign="30916165706580013">
-                                        <a id="paymentButton" class="btn btn-primary" style="background-color: #00bbe3; color: white;">Passer le commande</a>
-                                    </form>
+                                    <div style="margin-bottom: 100px;">
+                                        <form id="paymentForm" style="float: right; background-color: #00bbe3;"
+                                              data-merchant-id="1100018721"
+                                              data-amount="<?php echo $prixFinal ?>"
+                                              data-currency="CHF"
+                                              data-refno="123456789"
+                                              data-sign="30916165706580013">
+                                            <a id="paymentButton" class="btn btn-primary"
+                                               style="background-color: #00bbe3; color: white;">Passer le commande</a>
+                                        </form>
+                                    </div>
                                     <?php
                                 }
                             }
@@ -194,23 +199,25 @@ if (isset($_SESSION['idClient'])) {
     </section>
 </div>
 
-
-<div class="col-sm-12 footer" style="background-color: #00bbe3">
-    <div class="row ml-auto mr-auto justify-content-center">
-        <a href="https://www.instagram.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>
-        </a>
-        <a href="https://twitter.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/twitter.svg')"></div>
-        </a>
-        <a href="https://www.facebook.com/" target="_blank">
-            <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/facebook.svg')"></div>
-        </a>
-        <a href="https://www.youtube.com/" target="_blank">
-            <div class="explain-icon3" style="background-image: url('img/Social/white/youtube.svg')"></div>
-        </a>
+<footer>
+    <div class="col-sm-12 footer fixed-bottom"
+         style="background-color: #00bbe3;">
+        <div class="row ml-auto mr-auto justify-content-center">
+            <a href="https://www.instagram.com/" target="_blank">
+                <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/instagram.svg')"></div>
+            </a>
+            <a href="https://twitter.com/" target="_blank">
+                <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/twitter.svg')"></div>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank">
+                <div class="explain-icon3 mr-3" style="background-image: url('img/Social/white/facebook.svg')"></div>
+            </a>
+            <a href="https://www.youtube.com/" target="_blank">
+                <div class="explain-icon3" style="background-image: url('img/Social/white/youtube.svg')"></div>
+            </a>
+        </div>
     </div>
-</div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -226,11 +233,11 @@ if (isset($_SESSION['idClient'])) {
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var theId = getParameterByName(trans)
         var newPath = 'https://esig-sandbox.ch/nikolaantnj/panier.php?trans=' + theId
         alert('OK');
-       // window.location.href=newPath;
+        // window.location.href=newPath;
     });
 
     $("#paymentButton").click(function () {
