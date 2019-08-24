@@ -289,7 +289,7 @@ function insertArticlePanier($idPanier, $idArticle, $idTaille, $date){
 
 function getPanier($idUser){
     try {
-        $request = getConnexion()->prepare("SELECT `article`.idArticle, `article`.nomArticle, `taille`.`nomTaille` ,`article`.prixArticle, `panier`.idPanier FROM `article` JOIN `article_panier` ON `article_panier`.idArticle = `article`.idArticle JOIN `taille` ON `taille`.`idTaille` = `article_panier`.`idTaille` JOIN `panier` ON `panier`.`idPanier` = `article_panier`.`idPanier` WHERE `panier`.`idClient` = :idUser AND `panier`.`idPanier` NOT IN (SELECT `commande`.`idPanier` FROM `commande`)");
+        $request = getConnexion()->prepare("SELECT `article`.idArticle, `article`.nomArticle, `taille`.`nomTaille` ,`article`.prixArticle, `panier`.idPanier, `taille`.idTaille FROM `article` JOIN `article_panier` ON `article_panier`.idArticle = `article`.idArticle JOIN `taille` ON `taille`.`idTaille` = `article_panier`.`idTaille` JOIN `panier` ON `panier`.`idPanier` = `article_panier`.`idPanier` WHERE `panier`.`idClient` = :idUser AND `panier`.`idPanier` NOT IN (SELECT `commande`.`idPanier` FROM `commande`)");
         $request->bindParam(':idUser', $idUser, PDO::PARAM_INT);
         $request->execute();
 
@@ -352,6 +352,17 @@ function updateMedia($nomImage, $idArticle)
         $request = getConnexion()->prepare("UPDATE `image` SET `nomImage` = :nomImage, `idArticle` = :idArticle WHERE idArticle = :idArticle");
         $request->bindParam(':nomImage', $nomImage, PDO::PARAM_STR);
         $request->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+        $request->execute();
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function deleteArticleFromPanier($idArticle, $idTaille){
+    try {
+        $request = getConnexion()->prepare("DELETE FROM `article_panier` WHERE idArticle = :idArticle AND idTaille = :idTaille");
+        $request->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+        $request->bindParam(':idTaille', $idTaille, PDO::PARAM_INT);
         $request->execute();
     } catch (PDOException $e) {
         throw $e;

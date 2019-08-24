@@ -8,19 +8,34 @@ $message = array();
 if (isset($_SESSION['idClient'])) {
     $panier = getPanier($_SESSION['idClient'][0]);
 
-    if (isset($_GET['validate']) == "Ok") {
+    if (isset($_GET['trans']) == "ok") {
         if (count($panier) > 0) {
             $date = date("Y-m-d");
             validerPanier($panier[0][4], $date);
 
             array_push($message, "La commande à bien été passée.");
 
-            header("Refresh:3");
+            header("Refresh:3;url=panier.php");
+        }
+    }
+
+    if(isset($_GET['remove'])){
+        if(isset($_GET['taille'])){
+            $idArticleRemove = $_GET['remove'];
+            $idTailleRemove = $_GET['taille'];
+
+            deleteArticleFromPanier($idArticleRemove, $idTailleRemove);
+
+            //array_push($message, "L'article à bien été retiré du panier.");
+
+            header("location: panier.php");
         }
     }
 } else {
     header("location: index.php");
 }
+
+
 
 ?>
 
@@ -32,6 +47,9 @@ if (isset($_SESSION['idClient'])) {
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+            <script src="https://pay.sandbox.datatrans.com/upp/payment/js/datatrans-2.0.0.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -59,7 +77,7 @@ if (isset($_SESSION['idClient'])) {
                 if (isset($_SESSION['role'][0])) {
                     if ($_SESSION['role'][0] == 1) { ?>
                         <li class="nav-item ">
-                            <a class="nav-link" href="administration.php" style="font-size: 15px;">Administration </a>
+                            <a class="nav-link" href="administration.php" style="font-size: 15px;">Administration</a>
                         </li>
                         <?php
                     }
@@ -106,6 +124,7 @@ if (isset($_SESSION['idClient'])) {
                                     <th scope="col">Nom</th>
                                     <th scope="col">Taille</th>
                                     <th scope="col">Prix</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -120,6 +139,7 @@ if (isset($_SESSION['idClient'])) {
                                         <td><a href="article.php?art=<?php echo $panier[$cpt][0] ?>" style="text-decoration: underline; color: #919aa1;"><?= $panier[$cpt][1] ?></a></td>
                                         <td><?= $panier[$cpt][2] ?></td>
                                         <td><?= $panier[$cpt][3] ?> CHF</td>
+                                        <td><a href="panier.php?remove=<?php echo $panier[$cpt][0] ?>&taille=<?php echo $panier[$cpt][5] ?>" style="color: #919aa1;">X</a></td>
                                     </tr>
                                     <?php
 
@@ -137,12 +157,17 @@ if (isset($_SESSION['idClient'])) {
 
                             if (isset($panier)) {
                                 if (count($panier) > 0) {
+
+                                    $prixFinal = $prixTotal * 100;
                                     ?>
-                                    <form action="panier.php?validate=Ok" method="post" enctype="multipart/form-data">
-                                        <button id="addArticle-submit" type="submit" class="btn btn-primary"
-                                                name="submit"
-                                                style="float: right; background-color: #00bbe3;">Passer la commande
-                                        </button>
+
+                                    <form id="paymentForm" style="float: right; background-color: #00bbe3;"
+                                          data-merchant-id="1100018721"
+                                          data-amount="<?php echo $prixFinal ?>"
+                                          data-currency="CHF"
+                                          data-refno="123456789"
+                                          data-sign="30916165706580013">
+                                        <a id="paymentButton" class="btn btn-primary" style="background-color: #00bbe3; color: white;">Passer le commande</a>
                                     </form>
                                     <?php
                                 }
@@ -198,3 +223,17 @@ if (isset($_SESSION['idClient'])) {
         crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var theId = getParameterByName(trans)
+        var newPath = 'https://esig-sandbox.ch/nikolaantnj/panier.php?trans=' + theId
+        alert('OK');
+       // window.location.href=newPath;
+    });
+
+    $("#paymentButton").click(function () {
+        Datatrans.startPayment({'form': '#paymentForm'});
+    });
+</script>

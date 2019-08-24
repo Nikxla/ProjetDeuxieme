@@ -14,7 +14,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    margin-top: 30px;
     text-align: center;
 }
 
@@ -72,7 +71,7 @@ body {
     margin-right: auto;
 }
 
-.imageAarticle{
+.imageArticle{
     height: 500px;
     width: 700px;
     /* border-radius: 50%; */

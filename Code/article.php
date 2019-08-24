@@ -27,28 +27,33 @@ if (isset($_SESSION['idClient'])) {
     $varPanier = createNewPanier($_SESSION['idClient'][0]);
 }
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $date = date("Y-m-d");
     insertArticlePanier($varPanier[0][0], $artId, $_POST['tailleChoisi'], $date);
     $_SESSION['addToPanier'] = "Ok";
 }
 
-if(isset($_GET['delete'])){
-    if($_GET['delete'] == "ok"){
-        if(isset($_GET['art'])){
-            if($_GET['art'] != 0){
-                $idArticle = $_GET['art'];
-                deleteArticle($idArticle);
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'][0] == 1) {
+        if (isset($_GET['delete'])) {
+            if ($_GET['delete'] == "ok") {
+                if (isset($_GET['art'])) {
+                    if ($_GET['art'] != 0) {
+                        $idArticle = $_GET['art'];
+                        deleteArticle($idArticle);
 
-                if(isset($artInfo[2])){
-                    unlink("./uploads/" . $artInfo[2]);
+                        if (isset($artInfo[2])) {
+                            unlink("./uploads/" . $artInfo[2]);
+                        }
+
+                        array_push($message, "L'article à bien été supprimé.");
+                    }
                 }
-
-                array_push($message, "L'article à bien été supprimé.");
             }
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -88,16 +93,51 @@ if(isset($_GET['delete'])){
 <div class="container">
     <div class="col-lg-10 text-center m-auto pb-3">
         <br/>
-        <a href="article.php?delete=ok&art=<?php echo $artId ?>">
-            <button type="button" class="btn btn-danger mr-2" name="redirect" style="width: 150px; height: auto;">
-                Supprimer l'article
-            </button>
-        </a>
-        <a href="updateArticle.php?art=<?php echo $artId ?>">
-            <button type="button" class="btn btn-warning ml-2" name="redirect" style="width: 150px; height: auto;">
-                Modifier l'article
-            </button>
-        </a>
+        <?php
+
+        if (isset($_SESSION['role'])) {
+            if ($_SESSION['role'][0] == 1) {
+                ?>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        style="background-color: #00bbe3">
+                    Supprimer l'article
+                </button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Voulez-vous vraiment supprimer cette
+                                    article ?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                <a href="article.php?delete=ok&art=<?php echo $artId ?>">
+                                    <button style="background-color: #00bbe3" type="button" class="btn btn-primary">
+                                        Supprimer
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="updateArticle.php?art=<?php echo $artId ?>">
+                    <button type="button" class="btn btn-warning ml-2" name="redirect"
+                            style="background-color: #00bbe3">
+                        Modifier l'article
+                    </button>
+                </a>
+                <?php
+            }
+        }
+
+        ?>
         <h3 class="pt-4" style="color: #00bbe3"><?= $artInfo[0] ?></h3>
         <?php
 
@@ -112,13 +152,12 @@ if(isset($_GET['delete'])){
         }
 
         if ($_SESSION['addToPanier'] == "Ok") { ?>
-            <div class="alert table-success error">';
+            <div class="alert table-success error" style="padding-top: 30px;">
                 <p>L'article a bien été ajouté au panier.</p>
-            </div>';
+            </div>
             <?php
-
         } ?>
-        <div class="imageAarticle" style="background-image: url('./uploads/<?= $artInfo[2] ?>')"></div>
+        <div class="imageArticle" style="background-image: url('./uploads/<?= $artInfo[2] ?>')"></div>
         <div class="container pt-5" id="container">
             <section>
                 <article>
@@ -137,7 +176,7 @@ if(isset($_GET['delete'])){
                                     } ?>
                                 </select>
                             </div>
-                            <div class="col-lg-4 col-sm-12">
+                            <div class="col-lg-4 col-sm-12" id="buttonAdd">
                                 <?php
                                 if (isset($_SESSION['logged']) == true) {
                                     ?>
@@ -199,3 +238,15 @@ if(isset($_GET['delete'])){
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function () {
+        $('#buttonAdd').hide();
+    });
+
+    $(function () {
+        $('#selectTaille').change(function () {
+            $('#buttonAdd').show();
+        });
+    });
+</script>

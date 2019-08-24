@@ -43,8 +43,14 @@ if (isset($_POST['submit'])) {
                         $_SESSION['insertOk'] = "Ok";
                     }
                 }
+            } else {
+                array_push($error, "Veuillez choisir une image.");
             }
+        } else {
+            array_push($error, "Veuillez choisir au moins une taille.");
         }
+    } else {
+        array_push($error, "Veuillez remplir tous les champs.");
     }
 }
 ?>
@@ -96,8 +102,8 @@ if (isset($_POST['submit'])) {
         <article>
             <?php
             if ($_SESSION['insertOk'] == "Ok") {
-                if(isset($idArticle)){
-                    header("refresh:2;url=./article.php?art=".$idArticle);
+                if (isset($idArticle)) {
+                    header("refresh:2;url=./article.php?art=" . $idArticle);
                 }
 
                 ?>
@@ -107,6 +113,17 @@ if (isset($_POST['submit'])) {
                 <?php
 
             } ?>
+
+            <?php
+            if (count($error) > 0) {
+                echo '<div class="alert table-danger error">';
+                for ($i = 0; $i < count($error); $i++) {
+                    echo $error[$i];
+                    echo '<br/>';
+                };
+                echo '</div>';
+            }
+            ?>
             <form action="administration.php" method="post" enctype="multipart/form-data">
                 <label><b>Nom de l'article</b></label>
                 <input type="text" class="form-control" name="nom" id="addArticle-nom" placeholder="Nom de l'article"/>
